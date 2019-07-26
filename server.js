@@ -30,9 +30,21 @@ app.get('/scrape', function(req, res) {
             result.title = $(this).children('h2.top-story-title').children('a').text();
             result.link = $(this).children('h2.top-story-title').children('a').attr('href');
 
-            db.Article.create(result).then(function(dbArticle) {
-                console.log(dbArticle);
-            }).catch(function(err) {
+            console.log("alsdjflkaf");
+
+            db.Article.find({title: result.title}).then(function(articles) {
+
+                console.log("found articles1 :" + articles);
+
+                if(articles.length === 0) {
+                    db.Article.create(result).then(function(dbArticle) {
+                        console.log(dbArticle);
+                    }).catch(function(err) {
+                        if (err) throw err;
+                    });
+                }
+
+            }).catch(function(err){
                 if (err) throw err;
             });
         });
@@ -43,12 +55,22 @@ app.get('/scrape', function(req, res) {
             result.title = $(this).children('a').text();
             result.link = $(this).children('a').attr('href');
 
-            db.Article.create(result).then(function(dbArticle) {
-                console.log(dbArticle);
+            db.Article.find({title: result.title}).then(function(articles) {
+
+                console.log("found articles:" + articles);
+
+                if(articles.length === 0) {
+                    db.Article.create(result).then(function(dbArticle) {
+                        console.log(dbArticle);
+                    }).catch(function(err) {
+                        if (err) throw err;
+                    });
+                }
+
             }).catch(function(err) {
                 if (err) throw err;
             });
-        })
+        });
     });
 });
 
