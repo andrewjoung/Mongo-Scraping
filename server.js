@@ -71,6 +71,8 @@ app.get('/scrape', function(req, res) {
                 if (err) throw err;
             });
         });
+
+        res.json("successfully scraped");
     });
 });
 
