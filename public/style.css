@@ -10,14 +10,19 @@
     width: 60%;
     height: 700px;
   }
-  #notes {
+  #comments {
     float: right;
     width: 30%;
   }
+
+  #comments h2 {
+    font-size: 25px;
+  }
+
   textarea, input {
     display: block;
     width: 100%;
-    background-color: #FCF5C7;
+
   }
   input {
     height: 36px;
@@ -26,4 +31,9 @@
   textarea {
     height: 200px;
     font-size: 18px;
+  }
+
+  .commentTitle {
+      font-weight: bold;
+      margin-bottom: 3px;
   }
