@@ -38,7 +38,7 @@
 
             $("#comments").append("<h2>" + data.title + "</h2>");
             $("#comments").append("<hr />");
-            
+
             $("#comments").append("<div id='commentDiv'></div>")
             $("#comments").append("<input id='titleinput' name='title' >");
             // A textarea to add a new note body
@@ -46,15 +46,20 @@
             // A button to submit a new note, with the id of the article saved to it
             $("#comments").append("<button class='btn btn-primary' data-id='" + data._id + "' id='saveComment'>Save Comment</button>");
 
-            if(data.comments) {
-                let commentTitle = $("<p>");
-                commentTitle.text("Title: " + data.comments.title);
-                commentTitle.addClass("commentTitle");
+            if(data.comments.length > 0) {
 
-                let commentBody = $("<p>");
-                commentBody.text(data.comments.body);
+                for(let i = 0; i < data.comments.length; i++) {
+                    console.log(data.comments);
 
-                $("#commentDiv").append(commentTitle).append(commentBody);
+                    let commentTitle = $("<p>");
+                    commentTitle.text("Title: " + data.comments[i].title);
+                    commentTitle.addClass("commentTitle");
+
+                    let commentBody = $("<p>");
+                    commentBody.text(data.comments[i].body);
+
+                    $("#commentDiv").append(commentTitle).append(commentBody);
+                }
             }
         });
     });
@@ -70,16 +75,16 @@
                 body:$("#bodyinput").val()
             }
         }).then(function(data) {
+            //console.log(data);
             console.log(data);
+            // let commentTitle = $("<p>");
+            // commentTitle.text("Title: " + data.comments.title);
+            // commentTitle.addClass("commentTitle");
 
-            let commentTitle = $("<p>");
-            commentTitle.text("Title: " + data.comments.title);
-            commentTitle.addClass("commentTitle");
+            // let commentBody = $("<p>");
+            // commentBody.text(data.comments.body);
 
-            let commentBody = $("<p>");
-            commentBody.text(data.comments.body);
-
-            $("#commentDiv").append(commentTitle).append(commentBody);
+            // $("#commentDiv").append(commentTitle).append(commentBody);
 
             $("#comments").empty();
 
